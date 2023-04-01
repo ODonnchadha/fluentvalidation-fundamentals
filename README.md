@@ -4,15 +4,10 @@
 - [FluentValidation](https://fluentvalidation.net) is a free and open-source library developed by Jeremy Skinner.
 
 > Welcome to the Validation in DDD course
-
 > This is the source code for my Pluralsight course about Validation in DDD.
-
 > The course is currently under development. 
-
 > To get notified when it's released, subscribe to my email list: https://enterprisecraftsmanship.com/subscribe
-
 > How to Get Started
-
 > No need to set up a database, just hit F5 and you are good to go!
 
 - OVERVIEW:
@@ -24,6 +19,7 @@
 
 - INTRODUCTION:
   - It is important to have the correct mental model around the subject.
+  - Validation: The process of ensuring that some data is correct.
   
 - VALIDATING INPUT WITH FLUENTVALIDATION:
 - DIVING DEEPER INTO FLUENTVALIDATION:
