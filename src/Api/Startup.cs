@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Net;
+using Api.Validators;
 using DomainModel;
 using FluentValidation;
 using FluentValidation.AspNetCore;

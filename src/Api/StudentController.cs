@@ -28,7 +28,8 @@ namespace Api
         public IActionResult Register(RegisterRequest request)
         {
             Address[] addresses = request.Addresses
-                .Select(x => Address.Create(x.Street, x.City, x.State, x.ZipCode, _stateRepository.GetAll()).Value)
+                .Select(x => Address.Create(
+                    x.Street, x.City, x.State, x.ZipCode, _stateRepository.GetAll()).Value)
                 .ToArray();
 
             Email email = Email.Create(request.Email).Value;
@@ -94,7 +95,7 @@ namespace Api
         {
             Student student = _studentRepository.GetById(id);
 
-            var resonse = new GetResonse
+            var response = new GetResponse
             {
                 Addresses = student.Addresses.Select(x =>
                     new AddressDto
@@ -113,7 +114,7 @@ namespace Api
                     Grade = x.Enrollment.Grade.ToString()
                 }).ToArray()
             };
-            return Ok(resonse);
+            return Ok(response);
         }
     }
 }

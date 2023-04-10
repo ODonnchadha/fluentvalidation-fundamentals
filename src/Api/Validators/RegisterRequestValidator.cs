@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using CSharpFunctionalExtensions;
-using DomainModel;
-using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Api
+﻿namespace Api.Validators
 {
+    using System;
+    using System.Collections.Generic;
+    using CSharpFunctionalExtensions;
+    using DomainModel;
+    using FluentValidation;
     public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
     {
         public RegisterRequestValidator(StateRepository repository)
@@ -86,7 +83,7 @@ namespace Api
                 }
             });
         }
-        
+
         public static IRuleBuilderOptions<T, string> MustBeValueObject<T, TValueObject>(
             this IRuleBuilder<T, string> ruleBuilder,
             Func<string, Result<TValueObject, Error>> factoryMethod)

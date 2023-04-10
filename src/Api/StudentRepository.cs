@@ -6,31 +6,43 @@ namespace Api
 {
     public class StudentRepository
     {
-        private static readonly List<Student> existingStudents = new List<Student>
+        private static readonly List<Student> _existingStudents = new List<Student>
         {
             Alice(),
             Bob()
         };
+        private static long _lastId = _existingStudents.Max(x => x.Id);
 
-        private static long lastId = existingStudents.Max(x => x.Id);
-        public Student GetById(long id) => existingStudents.SingleOrDefault(x => x.Id == id);
-        public Student GetByEmail(Email email) => existingStudents.SingleOrDefault(x => x.Email == email);
+        public Student GetById(long id)
+        {
+            // Retrieving from the database
+            return _existingStudents.SingleOrDefault(x => x.Id == id);
+        }
+
+        public Student GetByEmail(Email email)
+        {
+            return _existingStudents.SingleOrDefault(x => x.Email == email);
+        }
 
         public void Save(Student student)
         {
+            // Setting up the id for new students emulates the ORM behavior
             if (student.Id == 0)
             {
-                lastId++;
-                SetId(student, lastId);
+                _lastId++;
+                SetId(student, _lastId);
             }
 
-            existingStudents.RemoveAll(x => x.Id == student.Id);
-            existingStudents.Add(student);
+            // Saving to the database
+            _existingStudents.RemoveAll(x => x.Id == student.Id);
+            _existingStudents.Add(student);
         }
 
-        private static void SetId(Entity entity, long id) =>
+        private static void SetId(Entity entity, long id)
+        {
+            // The use of reflection to set up the Id emulates the ORM behavior
             entity.GetType().GetProperty(nameof(Entity.Id)).SetValue(entity, id);
-
+        }
 
         private static Student Alice()
         {
